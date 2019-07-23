@@ -1,6 +1,5 @@
-package wcci.nflapi;
+package wcci.nflapi.Entities;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -15,7 +14,7 @@ public class Conference {
 	@GeneratedValue
 	private Long id;
 
-	private String conferenceName;
+	private String name;
 	private String imgUrl;
 
 	@OneToMany (mappedBy = "conference")
@@ -24,13 +23,13 @@ public class Conference {
 	protected Conference() {
 	}
 
-	public Conference(String conferenceName, String imgUrl) {
-		this.conferenceName = conferenceName;
+	public Conference(String name, String imgUrl) {
+		this.name = name;
 		this.imgUrl = imgUrl;
 	}
 
 	public String getName() {
-		return conferenceName;
+		return name;
 	}
 
 	public String getImgUrl() {

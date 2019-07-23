@@ -19,6 +19,10 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import wcci.nflapi.Controllers.TeamController;
+import wcci.nflapi.Entities.Team;
+import wcci.nflapi.Repositories.TeamRepository;
+
 @WebMvcTest(TeamController.class)
 @RunWith(SpringRunner.class)
 public class TeamWebLayerTest {

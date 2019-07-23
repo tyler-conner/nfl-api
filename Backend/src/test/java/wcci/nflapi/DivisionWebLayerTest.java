@@ -19,6 +19,10 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import wcci.nflapi.Controllers.DivisionController;
+import wcci.nflapi.Entities.Division;
+import wcci.nflapi.Repositories.DivisionRepository;
+
 @WebMvcTest(DivisionController.class)
 @RunWith(SpringRunner.class)
 public class DivisionWebLayerTest {

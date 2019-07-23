@@ -19,6 +19,10 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import wcci.nflapi.Controllers.ConferenceController;
+import wcci.nflapi.Entities.Conference;
+import wcci.nflapi.Repositories.ConferenceRepository;
+
 @WebMvcTest(ConferenceController.class)
 @RunWith(SpringRunner.class)
 public class ConferenceWebLayerTest {

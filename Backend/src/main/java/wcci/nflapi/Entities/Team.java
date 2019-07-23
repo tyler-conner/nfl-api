@@ -1,58 +1,66 @@
-package wcci.nflapi;
-
-import java.util.ArrayList;
-import java.util.Collection;
+package wcci.nflapi.Entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
-public class Division {
+public class Team {
 	
 	@Id
 	@GeneratedValue
 	private Long id;
-	private String imgUrl;
 	
-	private String divisionName;
+	private String name;
+	private String imgUrl;
+	private String coachName;
+	private String mascot;	
+	private String record;
+	
 	
 	@ManyToOne
-	private Conference conference;
-	
-	@OneToMany (mappedBy = "division")
-	private Collection<Team> teams;
+	private Division division;
 
-	
-	protected Division() {
+	protected Team() {
 		
 	}
 	
-	public Division(String divisionName, String imgUrl) {
-		this.divisionName = divisionName;
+	public Team(String name, String mascot, String imgUrl, String coachName,  String record) {
+		this.name = name;
 		this.imgUrl = imgUrl;
+		this.coachName = coachName;
+		this.mascot = mascot;
+		this.record = record;
+		
 	}
 
 	public Long getId() {
 		return id;
 	}
 
+	public String getName() {
+		return name;
+	}
+
 	public String getImgUrl() {
 		return imgUrl;
 	}
 
-	public String getDivisionName() {
-		return divisionName;
+	public String getCoachName() {
+		return coachName;
 	}
 
-	public Conference getConference() {
-		return conference;
+	public String getMascot() {
+		return mascot;
 	}
 
-	public Collection<Team> getTeams() {
-		return teams;
+	public String getRecord() {
+		return record;
+	}
+
+	public Division getDivision() {
+		return division;
 	}
 
 	@Override
@@ -71,7 +79,7 @@ public class Division {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Division other = (Division) obj;
+		Team other = (Team) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -79,7 +87,5 @@ public class Division {
 			return false;
 		return true;
 	}
-	
-	
 
 }

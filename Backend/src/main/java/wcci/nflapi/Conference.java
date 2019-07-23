@@ -1,5 +1,6 @@
 package wcci.nflapi;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -38,6 +39,9 @@ public class Conference {
 	
 	public Long getId() {
 		return id;
+	}
+	public Collection<Division> getDivisions() {
+		return divisions;
 	}
 
 	@Override

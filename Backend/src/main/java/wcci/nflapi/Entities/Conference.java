@@ -71,4 +71,8 @@ public class Conference {
 			return false;
 		return true;
 		}
+
+	public void addDivision(Division division) {
+		this.divisions.add(division);
+	}
 }

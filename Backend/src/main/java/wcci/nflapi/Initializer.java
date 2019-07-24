@@ -67,9 +67,23 @@ public class Initializer implements CommandLineRunner {
 	Team minnesota = new Team("Minnesota","Vikings", "imgURl", "Mike Zimmer", "0-0" );
 	teamRepo.save(minnesota);
 	
+	afc.addDivision(afcEast);
+	afc.addDivision(afcWest);
+	afc.addDivision(afcSouth);
+	afc.addDivision(afcNorth);
+	afcEast.addTeam(newEngland);
+	afcWest.addTeam(denver);
+	afcSouth.addTeam(houston);
+	afcNorth.addTeam(cleveland);
 	
-	
-	
+	nfc.addDivision(nfcEast);
+	nfc.addDivision(nfcWest);
+	nfc.addDivision(nfcSouth);
+	nfc.addDivision(nfcNorth);
+	nfcEast.addTeam(philadelphia);
+	nfcWest.addTeam(losAngeles);
+	nfcSouth.addTeam(atlanta);
+	nfcNorth.addTeam(minnesota);
 	}
 
 }

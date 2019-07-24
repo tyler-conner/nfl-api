@@ -49,6 +49,10 @@ public class Division {
 	public Conference getConference() {
 		return conference;
 	}
+	public void addTeam(Team team) {
+		this.teams.add(team);
+		
+	}
 
 	public Collection<Team> getTeams() {
 		return teams;
@@ -78,6 +82,7 @@ public class Division {
 			return false;
 		return true;
 	}
+
 	
 	
 

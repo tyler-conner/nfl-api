@@ -70,7 +70,7 @@ describe("Html", () => {
 
     describe("create", () => {
       test("creates an element", () => {
-        const underTest = Html().create("h2");
+        const underTest = Html().create("div");
 
         expect(underTest.render() instanceof HTMLDivElement).toBeTruthy();
       });

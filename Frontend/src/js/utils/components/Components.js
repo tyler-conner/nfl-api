@@ -8,7 +8,7 @@ class Components {
   getAppContext() {
     return Html().select("#app");
   }
-  getWrapperDiv() {
+  renderWrapperDiv() {
     return Html()
       .create("div")
       .addClass("wrapper");
@@ -157,27 +157,146 @@ class Components {
     return mainContent;
   }
 
-  // renderPageSingle(data, endpoint) {
-  //   const typeOfObject = endpoint.split("/")[1];
-  //   if (typeOfObject === "conferences") {
-  //     this.renderPageConference(data);
-  //   }
-  //   if (typeOfObject === "divisions") {
-  //     this.renderPageDivision(data);
-  //   }
-  //   if (typeOfObject === "teams") {
-  //     this.renderPageTeam(data);
-  //   }
-  // }
+  renderPageConference(data) {
+    const currentMainContentContainerContentBlock = this.renderWrapperDiv()
+      .select(".main-content")
+      .select(".container")
+      .select(".content-block");
+    const conferenceEntry = Html()
+      .create("div")
+      .addClass("conferenceEntry");
+    const conferenceName = Html()
+      .create("h3")
+      .addClass("content-block__title")
+      .text(data.conferenceName);
+    const conferenceImage = Html()
+      .create("img")
+      .addClass("conferenceEntry__image")
+      .addAttribute("src", data.imgUrl);
+    const conferenceDivisions = Html().create("ul");
+    data.divisions.forEach(division => {
+      const divisionElement = Html()
+        .create("li")
+        .addChild(
+          Html()
+            // .addClass("divisionEntry__image")
+            // .addAttribute("src", data.imgUrl)
+            .create("a")
+            .addAttribute("href", `/divisions/${division.id}`)
+            .text(division.divisionName)
+            .click(event => {
+              event.preventDefault();
+
+              const endpoint = event.target.getAttribute("href");
+              Api().getRequest(`http://localhost:8080/api${endpoint}`, data => {
+                this.renderPageSingle(data, endpoint);
+              });
+            })
+        );
+
+      conferenceDivisions.addChild(divisionElement);
+    });
+    conferenceEntry.addChild(conferenceImage);
+    conferenceEntry.addChild(conferenceName);
+    conferenceEntry.addChild(conferenceDivisions);
+    currentMainContentContainerContentBlock.replace(conferenceEntry);
+  }
+
+  renderPageDivision(data) {
+    const currentMainContentContainerContentBlock = this.renderWrapperDiv()
+      .select(".main-content")
+      .select(".container")
+      .select(".content-block");
+    const divisionEntry = Html()
+      .create("div")
+      .addClass("divisionEntry");
+    const divisionName = Html()
+      .create("h3")
+      .addClass("content-block__title")
+      .text(data.divisionName);
+    const teamListTitle = Html()
+      .create("h1")
+      .addClass("titles")
+      .text("TEAMS");
+    const divisionTeams = Html().create("ul");
+    data.teams.forEach(team => {
+      const teamElement = Html()
+        .create("img")
+        .addClass("conferenceEntry__image")
+        .addAttribute("src", data.imgUrl)
+        .create("a")
+        .addAttribute("href", `/teams/${team.id}`)
+        .click(event => {
+          event.preventDefault();
+
+          const endpoint = event.target.getAttribute("href");
+          Api().getRequest(`http://localhost:8080/api${endpoint}`, data => {
+            this.renderPageSingle(data, endpoint);
+          });
+        });
+      divisionTeams.addChild(teamElement);
+    });
+    divisionEntry.addChild(divisionName);
+    divisionEntry.addChild(teamListTitle);
+    currentMainContentContainerContentBlock.replace(divisionEntry);
+  }
+
+  renderPageTeam(data) {
+    const currentMainContentContainerContentBlock = this.renderWrapperDiv()
+      .select(".main-content")
+      .select(".container")
+      .select(".content-block");
+    const teamEntry = Html()
+      .create("div")
+      .addClass("teamEntry");
+    const teamName = Html()
+      .create("h3")
+      .addClass("content-block__title")
+      .text(data.teamName);
+    const mascot = Html()
+      .create("h3")
+      .addClass("content-block__title")
+      .text(data.mascot);
+    const teamImage = Html()
+      .create("img")
+      .addClass("teamEntry__image")
+      .addAttribute("src", data.imgUrl);
+    const coachName = Html()
+      .create("h3")
+      .text(`COACH: ${data.coachName}`);
+    const record = Html()
+      .create("h3")
+      .text(`RECORD: ${data.record}`);
+
+    teamEntry.addChild(teamName);
+    teamEntry.addChild(mascot);
+    teamEntry.addChild(teamImage);
+    teamEntry.addChild(coachName);
+    teamEntry.addChild(record);
+    currentMainContentContainerContentBlock.replace(teamEntry);
+  }
+
+  renderPageSingle(data, endpoint) {
+    const typeOfObject = endpoint.split("/")[1];
+    if (typeOfObject === "conferences") {
+      this.renderPageConference(data);
+    }
+    if (typeOfObject === "divisions") {
+      this.renderPageDivision(data);
+    }
+    if (typeOfObject === "teams") {
+      this.renderPageTeam(data);
+    }
+  }
 
   renderPageHome() {
     const app = this.getAppContext();
-    const wrapper = this.getWrapperDiv();
+    const wrapper = this.renderWrapperDiv();
     const mainHeader = this.renderMainHeader();
-    // const mainContent = this.renderMainContent();
+    const mainContent = this.renderMainContent("conferences");
     const mainFooter = this.renderMainFooter();
     wrapper.addChild(mainHeader);
-    // wrapper.addChild(mainContent);
+    wrapper.addChild(mainContent);
     wrapper.addChild(mainFooter);
     app.addChild(wrapper);
   }

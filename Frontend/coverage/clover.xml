@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1564171369341" clover="3.2.0">
-  <project timestamp="1564171369341" name="All files">
+<coverage generated="1564172349758" clover="3.2.0">
+  <project timestamp="1564172349759" name="All files">
     <metrics statements="34" coveredstatements="18" conditionals="10" coveredconditionals="6" methods="13" coveredmethods="7" elements="57" coveredelements="31" complexity="0" loc="34" ncloc="34" packages="1" files="1" classes="1"/>
-    <file name="Html.js" path="/Users/owner/Desktop/wcci/code/nfl-api/Frontend/src/js/utils/Html/Html.js">
+    <file name="html.js" path="C:\Users\WeCanCodeIT\wcci\code\nfl-api\Frontend\src\js\utils\html\html.js">
       <metrics statements="34" coveredstatements="18" conditionals="10" coveredconditionals="6" methods="13" coveredmethods="7"/>
       <line num="2" count="11" type="stmt"/>
       <line num="7" count="1" type="stmt"/>

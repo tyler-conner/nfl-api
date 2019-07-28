@@ -202,6 +202,13 @@ class Components {
     currentMainContentContainerContentBlock.replace(conferenceEntry);
   }
 
+  renderPageConferences() {
+    const currentMainContentContainer = this.renderWrapperDiv()
+      .select(".main-content")
+      .select(".container");
+    currentMainContentContainer.replace(this.renderContentBlock("conferences"));
+  }
+
   renderPageDivision(data) {
     const currentMainContentContainerContentBlock = this.renderWrapperDiv()
       .select(".main-content")
@@ -241,6 +248,13 @@ class Components {
     currentMainContentContainerContentBlock.replace(divisionEntry);
   }
 
+  renderPageDivisions() {
+    const currentMainContentContainer = this.renderWrapperDiv()
+      .select(".main-content")
+      .select(".container");
+    currentMainContentContainer.replace(this.renderContentBlock("divisions"));
+  }
+
   renderPageTeam(data) {
     const currentMainContentContainerContentBlock = this.renderWrapperDiv()
       .select(".main-content")
@@ -274,6 +288,12 @@ class Components {
     teamEntry.addChild(coachName);
     teamEntry.addChild(record);
     currentMainContentContainerContentBlock.replace(teamEntry);
+  }
+  renderPageTeams() {
+    const currentMainContentContainer = this.renderWrapperDiv()
+      .select(".main-content")
+      .select(".container");
+    currentMainContentContainer.replace(this.renderContentBlock("teams"));
   }
 
   renderPageSingle(data, endpoint) {

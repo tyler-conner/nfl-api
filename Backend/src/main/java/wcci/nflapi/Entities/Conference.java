@@ -1,5 +1,6 @@
 package wcci.nflapi.Entities;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -14,7 +15,7 @@ public class Conference {
 	@GeneratedValue
 	private Long id;
 
-	private String name;
+	private String conferenceName;
 	private String imgUrl;
 
 	@OneToMany (mappedBy = "conference")
@@ -24,12 +25,13 @@ public class Conference {
 	}
 
 	public Conference(String name, String imgUrl) {
-		this.name = name;
+		this.conferenceName = name;
 		this.imgUrl = imgUrl;
+		this.divisions = new ArrayList<>();
 	}
 
-	public String getName() {
-		return name;
+	public String getConferenceName() {
+		return conferenceName;
 	}
 
 	public String getImgUrl() {
@@ -41,6 +43,9 @@ public class Conference {
 	}
 	public Collection<Division> getDivisions() {
 		return divisions;
+	}
+	public void addDivision(Division division) {
+		this.divisions.add(division);
 	}
 
 	@Override
@@ -72,7 +77,4 @@ public class Conference {
 		return true;
 		}
 
-	public void addDivision(Division division) {
-		this.divisions.add(division);
-	}
 }

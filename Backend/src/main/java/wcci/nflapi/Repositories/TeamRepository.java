@@ -7,6 +7,6 @@ import wcci.nflapi.Entities.Team;
 
 @Repository
 public interface TeamRepository extends CrudRepository<Team, Long> {
-	Team findByName(String teamName);
+	Team findByTeamName(String teamName);
 	
 }

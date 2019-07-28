@@ -1,5 +1,6 @@
 package wcci.nflapi.Entities;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -16,7 +17,7 @@ public class Division {
 	private Long id;
 	private String imgUrl;
 	
-	private String name;
+	private String divisionName;
 	
 	@ManyToOne
 	private Conference conference;
@@ -30,8 +31,9 @@ public class Division {
 	}
 	
 	public Division(String name, String imgUrl) {
-		this.name = name;
+		this.divisionName = name;
 		this.imgUrl = imgUrl;
+		this.teams = new ArrayList<>();
 	}
 
 	public Long getId() {
@@ -42,8 +44,8 @@ public class Division {
 		return imgUrl;
 	}
 
-	public String getName() {
-		return name;
+	public String getDivisionName() {
+		return divisionName;
 	}
 
 	public Conference getConference() {

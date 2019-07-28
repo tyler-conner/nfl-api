@@ -12,7 +12,7 @@ public class Team {
 	@GeneratedValue
 	private Long id;
 	
-	private String name;
+	private String teamName;
 	private String imgUrl;
 	private String coachName;
 	private String mascot;	
@@ -27,7 +27,7 @@ public class Team {
 	}
 	
 	public Team(String name, String mascot, String imgUrl, String coachName,  String record) {
-		this.name = name;
+		this.teamName = name;
 		this.imgUrl = imgUrl;
 		this.coachName = coachName;
 		this.mascot = mascot;
@@ -39,8 +39,8 @@ public class Team {
 		return id;
 	}
 
-	public String getName() {
-		return name;
+	public String getTeamName() {
+		return teamName;
 	}
 
 	public String getImgUrl() {

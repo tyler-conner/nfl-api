@@ -7,5 +7,5 @@ import wcci.nflapi.Entities.Conference;
 
 @Repository
 public interface ConferenceRepository extends CrudRepository<Conference, Long> {
-	Conference findByName(String conferenceName);
+	Conference findByConferenceName(String conferenceName);
 }

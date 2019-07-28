@@ -7,5 +7,5 @@ import wcci.nflapi.Entities.Division;
 
 @Repository
 public interface DivisionRepository extends CrudRepository<Division, Long> {
-	Division findByName(final String divisionName);
+	Division findByDivisionName(final String divisionName);
 }

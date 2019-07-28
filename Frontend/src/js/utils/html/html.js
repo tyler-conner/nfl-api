@@ -1,8 +1,8 @@
 export default function() {
-  return new html();
+  return new Html();
 }
 
-class html {
+class Html {
   addAttribute(attributeToSet, attributeValue) {
     this.element.setAttribute(attributeToSet, attributeValue);
 
@@ -24,7 +24,9 @@ class html {
     if (elementToAdd.render() instanceof HTMLUnknownElement) {
       throw new Error("Invalid HTML tag");
     }
+
     this.element.append(elementToAdd.render());
+
     return this;
   }
 

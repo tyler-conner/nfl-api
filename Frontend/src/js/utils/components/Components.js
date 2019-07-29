@@ -151,6 +151,7 @@ class Components {
     const containerDiv = Html()
       .create("div")
       .addClass("container");
+      
     const contentBlock = this.renderContentBlock(requestedData);
     containerDiv.addChild(contentBlock);
     mainContent.addChild(containerDiv);

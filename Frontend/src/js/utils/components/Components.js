@@ -173,17 +173,19 @@ class Components {
       .create("img")
       .addClass("conferenceEntry__image")
       .addAttribute("src", data.imgUrl);
+    const divisionListTitle = Html()
+      .create("h1")
+      .addClass("titles")
+      .text("DIVISIONS");
     const conferenceDivisions = Html().create("ul");
     data.divisions.forEach(division => {
       const divisionElement = Html()
         .create("li")
         .addChild(
           Html()
-            // .addClass("divisionEntry__image")
-            // .addAttribute("src", data.imgUrl)
             .create("a")
             .addAttribute("href", `/divisions/${division.id}`)
-            .text(division.divisionName)
+            .text(division.name)
             .click(event => {
               event.preventDefault();
 
@@ -193,11 +195,34 @@ class Components {
               });
             })
         );
-
       conferenceDivisions.addChild(divisionElement);
     });
+    // const conferenceDivisions = Html().create("ul");
+    // data.divisions.forEach(division => {
+    //   const divisionElement = Html()
+    //     .create("li")
+    //     .addChild(
+    //       Html()
+    //         // .addClass("divisionEntry__image")
+    //         // .addAttribute("src", data.imgUrl)
+    //         .create("a")
+    //         .addAttribute("href", `/divisions/${division.id}`)
+    //         .text(division.divisionName)
+    //         .click(event => {
+    //           event.preventDefault();
+
+    //           const endpoint = event.target.getAttribute("href");
+    //           Api().getRequest(`http://localhost:8080/api${endpoint}`, data => {
+    //             this.renderPageSingle(data, endpoint);
+    //           });
+    //         })
+    //     );
+
+    //   conferenceDivisions.addChild(divisionElement);
+    // });
     conferenceEntry.addChild(conferenceImage);
     conferenceEntry.addChild(conferenceName);
+    conferenceEntry.addChild(divisionListTitle);
     conferenceEntry.addChild(conferenceDivisions);
     currentMainContentContainerContentBlock.replace(conferenceEntry);
   }
@@ -218,33 +243,54 @@ class Components {
       .create("div")
       .addClass("divisionEntry");
     const divisionName = Html()
-      .create("h3")
+      .create("h1")
       .addClass("content-block__title")
       .text(data.divisionName);
     const teamListTitle = Html()
-      .create("h1")
+      .create("h2")
       .addClass("titles")
       .text("TEAMS");
     const divisionTeams = Html().create("ul");
     data.teams.forEach(team => {
       const teamElement = Html()
-        .create("img")
-        .addClass("conferenceEntry__image")
-        .addAttribute("src", data.imgUrl)
-        .create("a")
-        .addAttribute("href", `/teams/${team.id}`)
-        .click(event => {
-          event.preventDefault();
+        .create("li")
+        .addChild(
+          Html()
+            .create("a")
+            .addAttribute("href", `/teams/${team.id}`)
+            .text("team.teamName")
+            .click(event => {
+              event.preventDefault();
 
-          const endpoint = event.target.getAttribute("href");
-          Api().getRequest(`http://localhost:8080/api${endpoint}`, data => {
-            this.renderPageSingle(data, endpoint);
-          });
-        });
+              const endpoint = event.target.getAttribute("href");
+              Api().getRequest(`http://localhost:8080/api${endpoint}`, data => {
+                this.renderPageSingle(data, endpoint);
+              });
+            })
+        );
       divisionTeams.addChild(teamElement);
     });
+    // const divisionTeams = Html().create("ul");
+    // data.teams.forEach(team => {
+    //   const teamElement = Html()
+    //     .create("img")
+    //     .addClass("conferenceEntry__image")
+    //     .addAttribute("src", data.imgUrl)
+    //     .create("a")
+    //     .addAttribute("href", `/teams/${team.id}`)
+    //     .click(event => {
+    //       event.preventDefault();
+
+    //       const endpoint = event.target.getAttribute("href");
+    //       Api().getRequest(`http://localhost:8080/api${endpoint}`, data => {
+    //         this.renderPageSingle(data, endpoint);
+    //       });
+    //     });
+    //   divisionTeams.addChild(teamElement);
+    // });
     divisionEntry.addChild(divisionName);
     divisionEntry.addChild(teamListTitle);
+    divisionEntry.addChild(divisionTeams);
     currentMainContentContainerContentBlock.replace(divisionEntry);
   }
 
